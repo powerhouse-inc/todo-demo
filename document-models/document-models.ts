@@ -1,2 +1,4 @@
 import type { DocumentModelModule } from "document-model";
-export const documentModels: DocumentModelModule<any>[] = [];
+import { TodoList } from "./todo-list/module.js";
+
+export const documentModels: DocumentModelModule<any>[] = [TodoList];
