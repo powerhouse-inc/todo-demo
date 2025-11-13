@@ -1,10 +1,10 @@
-import { EditTodoListName } from "./components/EditName.js";
+import { TodoList } from "./components/TodoList.js";
 
-/** Implement your editor behavior here */
+/** Editor component for the Todo List document type */
 export default function Editor() {
   return (
     <div className="py-4 px-8">
-      <EditTodoListName />
+      <TodoList />
     </div>
   );
 }
