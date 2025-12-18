@@ -1,4 +1,4 @@
-import { z } from "zod";
+import * as z from "zod";
 import type {
   AddTodoItemInput,
   DeleteTodoItemInput,
@@ -8,7 +8,7 @@ import type {
 } from "./types.js";
 
 type Properties<T> = Required<{
-  [K in keyof T]: z.ZodType<T[K], any, T[K]>;
+  [K in keyof T]: z.ZodType<T[K]>;
 }>;
 
 type definedNonNullAny = {};
@@ -48,7 +48,7 @@ export function TodoItemSchema(): z.ZodObject<Properties<TodoItem>> {
 export function TodoListStateSchema(): z.ZodObject<Properties<TodoListState>> {
   return z.object({
     __typename: z.literal("TodoListState").optional(),
-    items: z.array(TodoItemSchema()),
+    items: z.array(z.lazy(() => TodoItemSchema())),
   });
 }
 

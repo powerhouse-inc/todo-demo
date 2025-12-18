@@ -21,34 +21,42 @@ const stateReducer: StateReducer<TodoListPHState> = (
   if (isDocumentAction(action)) {
     return state;
   }
-
   switch (action.type) {
-    case "ADD_TODO_ITEM":
+    case "ADD_TODO_ITEM": {
       AddTodoItemInputSchema().parse(action.input);
+
       todoListTodosOperations.addTodoItemOperation(
         (state as any)[action.scope],
         action as any,
         dispatch,
       );
-      break;
 
-    case "UPDATE_TODO_ITEM":
+      break;
+    }
+
+    case "UPDATE_TODO_ITEM": {
       UpdateTodoItemInputSchema().parse(action.input);
+
       todoListTodosOperations.updateTodoItemOperation(
         (state as any)[action.scope],
         action as any,
         dispatch,
       );
-      break;
 
-    case "DELETE_TODO_ITEM":
+      break;
+    }
+
+    case "DELETE_TODO_ITEM": {
       DeleteTodoItemInputSchema().parse(action.input);
+
       todoListTodosOperations.deleteTodoItemOperation(
         (state as any)[action.scope],
         action as any,
         dispatch,
       );
+
       break;
+    }
 
     default:
       return state;

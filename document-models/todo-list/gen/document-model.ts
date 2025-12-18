@@ -17,12 +17,12 @@ export const documentModel: DocumentModelGlobalState = {
         global: {
           schema:
             "type TodoListState {\n  items: [TodoItem!]!\n}\n\n# Defines a GraphQL type for a single to-do item\ntype TodoItem {\n  id: OID! # Unique identifier for each to-do item\n  text: String! # The text description of the to-do item\n  checked: Boolean! # Status of the to-do item (checked/unchecked)\n}",
-          initialValue: '"{\\n  \\"items\\": []\\n}"',
+          initialValue: '{\n  "items": []\n}',
           examples: [],
         },
         local: {
           schema: "",
-          initialValue: '""',
+          initialValue: "",
           examples: [],
         },
       },
