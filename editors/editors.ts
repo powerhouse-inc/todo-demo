@@ -1,2 +1,4 @@
 import type { EditorModule } from "document-model";
-export const editors: EditorModule[] = [];
+import { TodoListEditor } from "./todo-list-editor/module.js";
+
+export const editors: EditorModule[] = [TodoListEditor];
