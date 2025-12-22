@@ -2,15 +2,19 @@ import type { TodoListTodosOperations } from "todo-tutorial/document-models/todo
 
 export const todoListTodosOperations: TodoListTodosOperations = {
   addTodoItemOperation(state, action) {
-    // TODO: implement addTodoItemOperation reducer
-    throw new Error("Reducer for 'addTodoItemOperation' not implemented.");
+    state.items.push({
+      id: action.input.id,
+      text: action.input.text,
+      checked: false,
+    });
   },
   updateTodoItemOperation(state, action) {
-    // TODO: implement updateTodoItemOperation reducer
-    throw new Error("Reducer for 'updateTodoItemOperation' not implemented.");
+    const item = state.items.find((item) => item.id === action.input.id);
+    if (!item) return state;
+    item.text = action.input.text ?? item.text;
+    item.checked = action.input.checked ?? item.checked;
   },
   deleteTodoItemOperation(state, action) {
-    // TODO: implement deleteTodoItemOperation reducer
-    throw new Error("Reducer for 'deleteTodoItemOperation' not implemented.");
+    state.items = state.items.filter((item) => item.id !== action.input.id);
   },
 };
