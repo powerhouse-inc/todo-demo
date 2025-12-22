@@ -1,0 +1,75 @@
+import type { DocumentModelGlobalState } from "document-model";
+
+export const documentModel: DocumentModelGlobalState = {
+  id: "powerhouse/todo-list",
+  name: "Todo List",
+  extension: "",
+  description: "",
+  author: {
+    name: "Powerhouse",
+    website: "https://powerhouse.inc",
+  },
+  specifications: [
+    {
+      version: 1,
+      changeLog: [],
+      state: {
+        global: {
+          schema:
+            "type TodoListState {\n  items: [TodoItem!]!\n}\n\ntype TodoItem {\n  id: OID! # Unique identifier for each to-do item\n  text: String! # The text description of the to-do item\n  checked: Boolean! # Status of the to-do item (checked/unchecked)\n}",
+          initialValue: '{\n  "items": []\n}',
+          examples: [],
+        },
+        local: {
+          schema: "",
+          initialValue: "",
+          examples: [],
+        },
+      },
+      modules: [
+        {
+          id: "0abf1bc5-5793-4bfa-aceb-dfc54af26b1d",
+          name: "todos",
+          description: "",
+          operations: [
+            {
+              id: "7d388f5b-4490-4b81-83a1-bf1ef2394f0d",
+              name: "ADD_TODO_ITEM",
+              description: "",
+              schema:
+                "input AddTodoItemInput {\n  id: OID!\n  text: String!\n}",
+              template: "",
+              reducer: "",
+              errors: [],
+              examples: [],
+              scope: "global",
+            },
+            {
+              id: "ddfcb319-bc32-4887-8398-bab36cc6bf8a",
+              name: "UPDATE_TODO_ITEM",
+              description: "",
+              schema:
+                "input UpdateTodoItemInput {\n  id: OID!\n  text: String\n  checked: Boolean\n}",
+              template: "",
+              reducer: "",
+              errors: [],
+              examples: [],
+              scope: "global",
+            },
+            {
+              id: "4c98dd88-5915-46c7-99fd-0872863d54f6",
+              name: "DELETE_TODO_ITEM",
+              description: "",
+              schema: "input DeleteTodoItemInput {\n  id: OID!\n}",
+              template: "",
+              reducer: "",
+              errors: [],
+              examples: [],
+              scope: "global",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
