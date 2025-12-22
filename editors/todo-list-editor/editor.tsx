@@ -3,6 +3,7 @@ import { setName } from "document-model";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { useSelectedTodoListDocument } from "todo-tutorial/document-models/todo-list";
+import { TodoList } from "./components/TodoList.js";
 
 export default function Editor() {
   const [document, dispatch] = useSelectedTodoListDocument();
@@ -66,6 +67,8 @@ export default function Editor() {
           )}
         </div>
       </div>
+
+      <TodoList />
     </div>
   );
 }
