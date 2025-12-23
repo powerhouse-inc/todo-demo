@@ -1,33 +1,20 @@
 import { useSelectedTodoListDocument } from "todo-tutorial/document-models/todo-list";
-import { EditTodoListName } from "./EditName.js";
-import { Todos } from "./Todos.js";
 import { AddTodo } from "./AddTodo.js";
-import { CloseButton } from "./CloseButton.js";
+import { Todos } from "./Todos.js";
 
 /** Displays the selected todo list */
 export function TodoList() {
-  const [selectedTodoList] = useSelectedTodoListDocument();
+  // this hook returns the currently selected TodoList document
+  const [selectedTodoListDocument] = useSelectedTodoListDocument();
 
-  if (!selectedTodoList) return null;
+  if (!selectedTodoListDocument) return null;
 
-  const todos = selectedTodoList.state.global.items;
+  const todos = selectedTodoListDocument.state.global.items;
 
   return (
-    <div>
-      <section className="mb-4 flex gap-2 items-center">
-        <div className="grow">
-          <EditTodoListName />
-        </div>
-        <div className="flex-none">
-          <CloseButton />
-        </div>
-      </section>
-      <section className="mb-4">
-        <Todos todos={todos} />
-      </section>
-      <section>
-        <AddTodo />
-      </section>
+    <div className="flex flex-col items-center px-4 py-8 gap-6">
+      <AddTodo />
+      <Todos todos={todos} />
     </div>
   );
 }
