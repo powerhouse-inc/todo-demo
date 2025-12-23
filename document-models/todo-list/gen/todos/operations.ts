@@ -1,10 +1,10 @@
 import { type SignalDispatch } from "document-model";
-import {
-  type AddTodoItemAction,
-  type UpdateTodoItemAction,
-  type DeleteTodoItemAction,
+import type {
+  AddTodoItemAction,
+  UpdateTodoItemAction,
+  DeleteTodoItemAction,
 } from "./actions.js";
-import { type TodoListState } from "../types.js";
+import type { TodoListState } from "../types.js";
 
 export interface TodoListTodosOperations {
   addTodoItemOperation: (
