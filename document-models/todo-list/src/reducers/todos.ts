@@ -1,14 +1,16 @@
-import { generateId } from "document-model/core";
 import type { TodoListTodosOperations } from "todo-tutorial/document-models/todo-list";
 
 export const todoListTodosOperations: TodoListTodosOperations = {
   addTodoItemOperation(state, action) {
-    const id = generateId();
-    state.items.push({ ...action.input, id, checked: false });
+    state.items.push({
+      id: action.input.id,
+      text: action.input.text,
+      checked: false,
+    });
   },
   updateTodoItemOperation(state, action) {
     const item = state.items.find((item) => item.id === action.input.id);
-    if (!item) return;
+    if (!item) return state;
     item.text = action.input.text ?? item.text;
     item.checked = action.input.checked ?? item.checked;
   },
