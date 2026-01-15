@@ -6,6 +6,6 @@ export const schema: DocumentNode = gql`
   Subgraph definition
   """
   type Query {
-    example(driveId: String!): String
+    searchTodos(driveId: String!, searchTerm: String!): [String!]
   }
 `;
