@@ -1,100 +1,179 @@
-# Todo Demo – Vetra Academy Reference Implementation
+# Document Model Boilerplate
 
-This repository serves as the **official reference implementation** for the [Vetra Academy "Get Started" tutorial](https://academy.vetra.io/academy/GetStarted/CreateNewPowerhouseProject). It demonstrates a complete Powerhouse project featuring a **To-do List** document model with editors, providing learners with working code to reference as they build their own projects.
+This Document Model Boilerplate provides code generation for scaffolding editors and models. 
+It ensures compatibility with host applications like Connect and the Reactors for seamless document model and editor integration.
 
-> **Maintained by the Powerhouse team** – This repository is kept up to date with the latest Powerhouse tooling and best practices.
+## Standard Document Model Workflow with help of the boilerplate.
+This tutorial will guide you through the process of creating a new document model using the Document Model Editor in the Connect app. 
 
-## Purpose
+<details>
+<summary>Available NPM commands</summary>
 
-When following the Vetra Academy tutorials, you'll create your own Powerhouse project from scratch. This repository provides:
+-   `generate`: Updates the generated code according to the JSON spec and GraphQL schema of your document model, made in Connect.
+-   `lint`: Checks for errors with ESLint and TypeScript checking.
+-   `format`: Formats the code using Prettier.
+-   `build`: Builds the library project using Vite.
+-   `storybook`: Starts Storybook in development mode.
+-   `build-storybook`: Builds Storybook.
+-   `test`: Runs Jest for testing.
 
-- ✅ A complete, working implementation to reference
-- ✅ Step-by-step tutorial branches to compare your progress
-- ✅ Best practices for document models, reducers, and editors
+</details>
 
-## Using This Repository with the Tutorial
+### 1. Defining Your Document Model GraphQL Schema
+Start by creating your own 'Powerhouse Project' (Document model + editor).
 
-### Setup: Connect to This Repository as a Reference
-
-While following the tutorial, add this repository as a remote to access reference branches:
-
-```bash
-# In your own project directory
-git remote add tutorial https://github.com/powerhouse-inc/todo-tutorial.git
-git fetch tutorial --prune
-```
-
-### Compare Your Work with Reference Steps
-
-At any point, compare what you've built with a tutorial step:
+Step 1: Run the following command to set up your project inside this directory:
 
 ```bash
-# Compare your current work with a specific step
-git diff tutorial/step-1-initialize-with-ph-init
-
-# See what changed between tutorial steps
-git diff tutorial/step-1-initialize-with-ph-init..tutorial/step-2-generate-todo-list-document-model
-
-# Compare specific files
-git diff tutorial/step-1-initialize-with-ph-init -- package.json
+npm create document-model-lib
 ```
 
-### If You Get Stuck
+Step 2: Use the Document Model Editor in the Connect app
 
-Reset your code to match a tutorial step:
+The following command gives you access to all the powerhouse CLI tools available, install it globally if you are a poweruser. 
 
 ```bash
-# Reset to a specific step (WARNING: loses your changes)
-git reset --hard tutorial/step-2-generate-todo-list-document-model
+npm install ph-cmd
+```
+Now you are able to launch Connect in Studio Mode (Locally):
+
+```bash
+npm run connect
 ```
 
-## Project Structure
+Open the 'Document Model' creator at the bottom of connect to define your document mode with it's GraphQL Schema Definition.
+This schema will define the structure and fields for your document model using GraphQL. 
+Follow one of our tutorials on Academy to get familiar with the process. 
 
+### 2. Defining Document Model Operations
+Using the Document Model Operations Editor, define the operations for your document model and their GraphQL counterparts. 
+These operations will handle state changes within your document model.
+
+**Best Practices:**
+
+- Clearly define CRUD operations (Create, Read, Update, Delete).
+- Use GraphQL input types to specify the parameters for each operation.
+- Ensure that operations align with user intent to maintain a clean and understandable API.
+
+### 3. Generating Scaffolding Code
+Export your document model as a .zip file from Connect.
+Import the .zip file into your project directory created in Step 1.
+Run the following command to generate the scaffolding code:
+
+```bash
+npm run generate YourModelName.phdm.zip
 ```
-todo-demo/
-├── document-models/          # Document model definitions
-│   └── todo-list/            # TodoList document model
-│       ├── gen/              # Auto-generated code
-│       ├── src/              # Custom reducer implementations
-│       │   ├── reducers/     # State transition logic
-│       │   └── tests/        # Unit tests
-│       └── schema.graphql    # GraphQL schema definition
-├── editors/                  # Document editors
-│   ├── todo-list-editor/     # Main TodoList editor
-│   └── todo-drive-explorer/  # Drive explorer component
-├── subgraphs/                # GraphQL subgraphs
-├── processors/               # Data processors
-└── powerhouse.manifest.json  # Package manifest
+
+This will create a new directory under /document-models containing:
+
+JSON file with the document model specification.
+GraphQL file with state and operation schemas.
+A gen/ folder with autogenerated code.
+A src/ folder for your custom code implementation.
+
+### 4. Implementing Reducer Code and Unit Tests
+Navigate to the reducer directory:
+
+```bash
+cd document-models/"YourModelName"/src/reducers
 ```
 
-## Available Commands
+Implement the reducer functions for each document model operation. These functions will handle state transitions.
 
-| Command | Description |
-|---------|-------------|
-| `npm run generate` | Updates generated code from document model specifications |
-| `npm run connect` | Launch Connect app locally for testing |
-| `npm run vetra` | Launch Vetra Studio for document model development |
-| `npm run build` | Build the library project |
-| `npm run test` | Run unit tests |
-| `npm run lint` | Check for linting errors |
+Add utility functions in:
 
-## Tutorial Steps
+```bash
+document-models/"YourModelName"/src/utils.ts
+```
 
-The Vetra Academy tutorial covers:
+Write unit tests to ensure the correctness of your reducers:
 
-1. **Initialize Project** – Set up a new Powerhouse project with `ph init`
-2. **Write Document Specification** – Define your document model schema in Vetra Studio
-3. **Generate Document Model** – Scaffold code from your specification
-4. **Implement Reducers** – Write state transition logic for operations
-5. **Write Tests** – Ensure your reducers work correctly
-6. **Build Editor** – Create a user interface for your document model
+Test files should be located in:
 
-## Learn More
+```bash
+document-models/"YourModelName"/src/reducers/tests
+```
 
-- 📚 [Vetra Academy – Get Started Tutorial](https://academy.vetra.io/academy/GetStarted/CreateNewPowerhouseProject)
-- 🔧 [Vetra Studio Documentation](https://academy.vetra.io/)
-- 💬 [Powerhouse Discord Community](https://discord.gg/powerhouse)
+Run the tests:
 
-## License
+```bash
+npm test
+```
 
-AGPL-3.0-only
+Test the editor functionality:
+
+```bash
+npm run connect
+```
+
+### 5. Implementing Document Editors
+Generate the editor template for your document model:
+
+```bash
+npm run generate -- --editor YourModelName --document-types powerhouse/YourModelName
+```
+
+The --editor flag specifies the name of your document model.
+The --document-types flag links the editor to your document model type.
+After generation:
+
+Open the editor template:
+
+```bash
+editors/YourModelName/editor.tsx
+```
+
+Customize the editor interface to suit your document model.
+
+### 6. Testing the Document Editor
+Run the Connect app to test your document editor:
+
+```bash
+npm run connect
+```
+
+Verify that the editor functions as expected.
+Perform end-to-end testing to ensure smooth integration between the document model and its editor.
+
+### 7. Adding a Manifest File
+Create a manifest file to describe your document model and editor. This enables proper integration with the host application.
+
+**Example manifest.json:**
+
+```json
+{
+  "name": "your-model-name",
+  "description": "A brief description of your document model.",
+  "category": "your-category", // e.g., "Finance", "People Ops", "Legal"
+  "publisher": {
+    "name": "your-publisher-name",
+    "url": "your-publisher-url"
+  },
+  "documentModels": [
+    {
+      "id": "your-model-id",
+      "name": "your-model-name"
+    }
+  ],
+  "editors": [
+    {
+      "id": "your-editor-id",
+      "name": "your-editor-name",
+      "documentTypes": ["your-model-id"]
+    }
+  ]
+}
+```
+
+### Steps to finalize:
+
+Place the manifest file at your project root.
+Update your index.js to export your modules and include the new document model and editor.
+
+### Final Thoughts
+You've now successfully created a Document Model and its corresponding Editor using the Connect app!
+
+Next Steps:
+- Expand functionality: Add more operations or complex logic to your document model.
+- Improve UX: Enhance the document editor for a smoother user experience.
+- Integrate with other systems: Use APIs or GraphQL to connect your document model with external services.

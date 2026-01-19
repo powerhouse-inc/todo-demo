@@ -24,6 +24,7 @@ export function AddTodoItemInputSchema(): z.ZodObject<
   Properties<AddTodoItemInput>
 > {
   return z.object({
+    id: z.string(),
     text: z.string(),
   });
 }

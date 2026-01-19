@@ -18,12 +18,10 @@ scalar Amount_Currency
 scalar Amount_Crypto
 scalar Amount
 scalar Upload
-
 type TodoListState {
   items: [TodoItem!]!
 }
 
-# Defines a GraphQL type for a single to-do item
 type TodoItem {
   id: OID! # Unique identifier for each to-do item
   text: String! # The text description of the to-do item
@@ -33,6 +31,7 @@ type TodoItem {
 # todos
 
 input AddTodoItemInput {
+  id: OID!
   text: String!
 }
 

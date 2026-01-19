@@ -60,6 +60,7 @@ export type Scalars = {
 };
 
 export type AddTodoItemInput = {
+  id: Scalars["OID"]["input"];
   text: Scalars["String"]["input"];
 };
 

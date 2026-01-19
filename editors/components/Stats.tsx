@@ -48,44 +48,51 @@ export function Stats({
   const hasTodoLists = todoListDocuments !== undefined;
 
   return (
-    <ul className="text-sm text-gray-800 max-w-1/2">
-      {hasTodoLists && (
-        <li className="flex justify-between">
-          <span>Todo Lists:</span> <span>{totalTodoListDocuments}</span>
+    <div className="w-[400px] rounded-xl bg-white p-6 shadow-sm">
+      <div className="mb-4 text-xs font-medium uppercase tracking-wide text-gray-400">
+        Statistics
+      </div>
+      <ul className="flex flex-col gap-2">
+        {hasTodoLists && (
+          <li className="flex justify-between items-center rounded-lg border border-gray-200 p-3">
+            <span className="text-sm text-gray-600">Todo Lists</span>
+            <span className="text-sm font-medium text-gray-900">{totalTodoListDocuments}</span>
+          </li>
+        )}
+        <li className="flex justify-between items-center rounded-lg border border-gray-200 p-3">
+          <span className="text-sm text-gray-600">Todos</span>
+          <span className="text-sm font-medium text-gray-900">{totalTodos}</span>
         </li>
-      )}
-      <li className="flex justify-between">
-        <span>Todos:</span> <span>{totalTodos}</span>
-      </li>
-      <li className="flex justify-between">
-        <span>Checked:</span>{" "}
-        <span>
-          {totalChecked} ({percentageChecked}%)
-        </span>
-      </li>
-      <li className="flex justify-between">
-        <span>Unchecked:</span>{" "}
-        <span>
-          {totalUnchecked} ({percentageUnchecked}%)
-        </span>
-      </li>
-      {hasCreatedAt && (
-        <li className="flex justify-between">
-          <span>Created:</span>{" "}
-          <span>
-            {createdAtFormattedDate} {createdAtFormattedTime}
+        <li className="flex justify-between items-center rounded-lg border border-gray-200 p-3">
+          <span className="text-sm text-gray-600">Checked</span>
+          <span className="text-sm font-medium text-gray-900">
+            {totalChecked} ({percentageChecked}%)
           </span>
         </li>
-      )}
-      {hasLastModified && (
-        <li className="flex justify-between">
-          <span>Last modified:</span>{" "}
-          <span>
-            {lastModifiedFormattedDate} {lastModifiedFormattedTime}
+        <li className="flex justify-between items-center rounded-lg border border-gray-200 p-3">
+          <span className="text-sm text-gray-600">Unchecked</span>
+          <span className="text-sm font-medium text-gray-900">
+            {totalUnchecked} ({percentageUnchecked}%)
           </span>
         </li>
-      )}
-    </ul>
+        {hasCreatedAt && (
+          <li className="flex justify-between items-center rounded-lg border border-gray-200 p-3">
+            <span className="text-sm text-gray-600">Created</span>
+            <span className="text-sm font-medium text-gray-900">
+              {createdAtFormattedDate} {createdAtFormattedTime}
+            </span>
+          </li>
+        )}
+        {hasLastModified && (
+          <li className="flex justify-between items-center rounded-lg border border-gray-200 p-3">
+            <span className="text-sm text-gray-600">Last modified</span>
+            <span className="text-sm font-medium text-gray-900">
+              {lastModifiedFormattedDate} {lastModifiedFormattedTime}
+            </span>
+          </li>
+        )}
+      </ul>
+    </div>
   );
 }
 

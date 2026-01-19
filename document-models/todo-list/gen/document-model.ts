@@ -16,7 +16,7 @@ export const documentModel: DocumentModelGlobalState = {
       state: {
         global: {
           schema:
-            "type TodoListState {\n  items: [TodoItem!]!\n}\n\n# Defines a GraphQL type for a single to-do item\ntype TodoItem {\n  id: OID! # Unique identifier for each to-do item\n  text: String! # The text description of the to-do item\n  checked: Boolean! # Status of the to-do item (checked/unchecked)\n}",
+            "type TodoListState {\n  items: [TodoItem!]!\n}\n\ntype TodoItem {\n  id: OID! # Unique identifier for each to-do item\n  text: String! # The text description of the to-do item\n  checked: Boolean! # Status of the to-do item (checked/unchecked)\n}",
           initialValue: '{\n  "items": []\n}',
           examples: [],
         },
@@ -28,15 +28,16 @@ export const documentModel: DocumentModelGlobalState = {
       },
       modules: [
         {
-          id: "9809adf9-3443-4a25-a874-d7746e9d28b2",
+          id: "0abf1bc5-5793-4bfa-aceb-dfc54af26b1d",
           name: "todos",
           description: "",
           operations: [
             {
-              id: "3a376080-0bbd-4857-817e-ff0125846428",
+              id: "7d388f5b-4490-4b81-83a1-bf1ef2394f0d",
               name: "ADD_TODO_ITEM",
               description: "",
-              schema: "input AddTodoItemInput {\n  text: String!\n}",
+              schema:
+                "input AddTodoItemInput {\n  id: OID!\n  text: String!\n}",
               template: "",
               reducer: "",
               errors: [],
@@ -44,7 +45,7 @@ export const documentModel: DocumentModelGlobalState = {
               scope: "global",
             },
             {
-              id: "e2bd7504-7638-4501-816b-06f21eb2aa76",
+              id: "ddfcb319-bc32-4887-8398-bab36cc6bf8a",
               name: "UPDATE_TODO_ITEM",
               description: "",
               schema:
@@ -56,7 +57,7 @@ export const documentModel: DocumentModelGlobalState = {
               scope: "global",
             },
             {
-              id: "d3dcf3d1-ae38-4b51-82f3-8ccaefc7edff",
+              id: "4c98dd88-5915-46c7-99fd-0872863d54f6",
               name: "DELETE_TODO_ITEM",
               description: "",
               schema: "input DeleteTodoItemInput {\n  id: OID!\n}",

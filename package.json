@@ -71,7 +71,7 @@
     "document-model": "5.3.0-staging.1",
     "graphql": "^16.10.0",
     "graphql-tag": "^2.12.6",
-    "zod": "^4.0.0"
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.2.12",
@@ -112,10 +112,5 @@
   "peerDependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "zod": "^4.0.0"
-    }
   }
 }

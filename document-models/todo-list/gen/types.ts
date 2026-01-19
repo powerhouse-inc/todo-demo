@@ -3,7 +3,6 @@ import type { TodoListAction } from "./actions.js";
 import type { TodoListState as TodoListGlobalState } from "./schema/types.js";
 
 type TodoListLocalState = Record<PropertyKey, never>;
-
 type TodoListPHState = PHBaseState & {
   global: TodoListGlobalState;
   local: TodoListLocalState;
